@@ -1,0 +1,26 @@
+name: Custom Workflow
+
+on:
+  workflow_dispatch:  # Manual trigger ke liye
+
+jobs:
+  build:
+    runs-on: ubuntu-latest  # Ubuntu environment mein chalega
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2  # Code ko checkout karega
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.8'  # Python ka version define karna
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt  # Aapke dependencies install karega
+
+    - name: Run tests
+      run: |
+        pytest  # Agar aapne tests likhe hain toh wo run karega
